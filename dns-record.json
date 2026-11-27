@@ -1,0 +1,11 @@
+{
+  "Changes": [{
+    "Action": "CREATE",
+    "ResourceRecordSet": {
+      "Name": "kajoo.chambal.online",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [{ "Value": "kajoo.chambal.online.s3-website.ap-south-1.amazonaws.com" }]
+    }
+  }]
+}

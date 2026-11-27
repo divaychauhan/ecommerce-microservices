@@ -1,0 +1,40 @@
+name: payment-service CI and security scan
+on:
+  pull_request:
+    paths:
+      - 'services/payment-service/**'
+      - '.github/workflows/payment-service-ci.yaml'
+  push:
+    branches: [main]
+    paths:
+      - 'services/payment-service/**'
+      - '.github/workflows/payment-service-ci.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  build-and-scan:
+    name: Build and scan payment-service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t payment-service:ci ./services/payment-service
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: payment-service:ci
+          format: sarif
+          output: trivy-results.sarif
+          severity: CRITICAL,HIGH
+          exit-code: '1'
+          ignore-unfixed: true
+      - name: Upload Trivy report to GitHub Code Scanning
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif

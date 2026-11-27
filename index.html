@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Kajoo 🌸</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#ffe4ee;
+    --blush-soft:#fff3f7;
+    --rose:#e8578a;
+    --rose-deep:#c23d6d;
+    --plum:#4a2140;
+    --cream:#fffaf7;
+    --gold:#f4b942;
+    --mint:#a9e0c9;
+    --shadow: 0 20px 60px rgba(200,60,120,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Quicksand', sans-serif;
+    background: linear-gradient(180deg, var(--blush-soft) 0%, var(--blush) 40%, var(--cream) 100%);
+    color:var(--plum);
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+  }
+
+  /* ---------- Ambient floating petals ---------- */
+  #petals{
+    position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden;
+  }
+  .petal{
+    position:absolute; top:-10%; font-size:20px; opacity:0.7;
+    animation: fall linear infinite;
+    filter: drop-shadow(0 2px 4px rgba(200,60,120,0.2));
+  }
+  @keyframes fall{
+    0%{ transform: translateY(-10vh) translateX(0) rotate(0deg); }
+    100%{ transform: translateY(110vh) translateX(40px) rotate(360deg); }
+  }
+
+  section{ position:relative; z-index:2; padding: 100px 20px; max-width:900px; margin:0 auto; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding-top:60px; position:relative;
+  }
+  .eyebrow{
+    font-size:15px; letter-spacing:3px; text-transform:uppercase; color:var(--rose-deep); font-weight:700;
+    margin-bottom:18px; opacity:0;
+    animation: riseIn 1s ease forwards 0.2s;
+  }
+  .hero h1{
+    font-size:clamp(3.2rem, 11vw, 7rem);
+    font-weight:600; font-style:italic; color:var(--rose-deep); line-height:0.95;
+    opacity:0; animation: riseIn 1s ease forwards 0.5s;
+  }
+  .hero .sub{
+    margin-top:22px; font-size:clamp(1.1rem,3vw,1.4rem); font-weight:600; color:var(--plum);
+    opacity:0; animation: riseIn 1s ease forwards 0.9s;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(24px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .bloom-wrap{ width:180px; height:180px; margin:36px auto 10px; position:relative; }
+  .bloom-wrap svg{ width:100%; height:100%; }
+  .petal-shape{ transform-origin:60px 60px; animation: bloomPulse 4s ease-in-out infinite; }
+  @keyframes bloomPulse{
+    0%,100%{ transform:scale(1) rotate(var(--r,0deg)); }
+    50%{ transform:scale(1.08) rotate(var(--r,0deg)); }
+  }
+
+  /* Countdown */
+  .countdown{
+    margin-top:40px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+    opacity:0; animation: riseIn 1s ease forwards 1.3s;
+  }
+  .cbox{
+    background:var(--cream); border:2px solid var(--rose); border-radius:18px;
+    min-width:78px; padding:14px 10px; box-shadow: var(--shadow);
+  }
+  .cbox .num{ font-family:'Fraunces',serif; font-size:2rem; font-weight:700; color:var(--rose-deep); }
+  .cbox .lbl{ font-size:0.7rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--plum); font-weight:600; }
+
+  .scroll-hint{
+    margin-top:50px; font-size:0.85rem; color:var(--rose-deep); opacity:0.7;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(8px);} }
+
+  /* ---------- Section headers ---------- */
+  .sec-eyebrow{
+    text-align:center; font-size:13px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--rose-deep); font-weight:700; margin-bottom:10px;
+  }
+  .sec-title{
+    text-align:center; font-size:clamp(2rem,5vw,3rem); font-style:italic; font-weight:600;
+    color:var(--plum); margin-bottom:50px;
+  }
+  .reveal{ opacity:0; transform:translateY(30px); transition: all 0.8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Love Letter ---------- */
+  .letter{
+    background:var(--cream); border-radius:24px; padding:50px 44px; box-shadow:var(--shadow);
+    position:relative; border:1px solid rgba(232,87,138,0.15);
+  }
+  .letter::before{
+    content:"❝"; position:absolute; top:-10px; left:30px; font-size:5rem; color:var(--rose);
+    opacity:0.25; font-family:'Fraunces',serif;
+  }
+  .letter p{
+    font-size:1.15rem; line-height:1.9; margin-bottom:18px; color:var(--plum);
+  }
+  .letter .sign{
+    text-align:right; font-family:'Fraunces',serif; font-style:italic; font-size:1.5rem; color:var(--rose-deep); margin-top:24px;
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline{ position:relative; padding-left:34px; }
+  .timeline::before{
+    content:""; position:absolute; left:8px; top:6px; bottom:6px; width:3px;
+    background: linear-gradient(var(--rose), var(--gold));
+    border-radius:3px;
+  }
+  .t-item{ position:relative; margin-bottom:44px; }
+  .t-item::before{
+    content:"♥"; position:absolute; left:-34px; top:0; width:26px; height:26px;
+    background:var(--rose); color:white; border-radius:50%; font-size:13px;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(232,87,138,0.4);
+  }
+  .t-item h3{ font-size:1.3rem; color:var(--rose-deep); font-style:italic; margin-bottom:6px; }
+  .t-item p{ color:var(--plum); line-height:1.7; opacity:0.9; }
+
+  /* ---------- Gallery ---------- */
+  .gallery{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:22px;
+  }
+  .card{
+    aspect-ratio: 4/5; border-radius:20px; position:relative; overflow:hidden;
+    box-shadow:var(--shadow); display:flex; align-items:flex-end; padding:18px;
+    transform:rotate(var(--rot)); transition: transform 0.3s ease;
+    cursor:default;
+  }
+  .card:hover{ transform:rotate(0deg) scale(1.04); }
+  .card span{
+    position:relative; z-index:2; color:white; font-weight:700; font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem;
+    text-shadow:0 2px 8px rgba(0,0,0,0.25);
+  }
+  .card .icon{ position:absolute; top:16px; right:16px; font-size:1.6rem; z-index:2; }
+  .note{
+    text-align:center; margin-top:30px; font-size:0.95rem; color:var(--rose-deep); background:var(--cream);
+    padding:14px 18px; border-radius:14px; border:1.5px dashed var(--rose);
+  }
+
+  /* ---------- Game ---------- */
+  .game-box{
+    background:var(--cream); border-radius:24px; padding:40px; text-align:center; box-shadow:var(--shadow);
+  }
+  #balloons{
+    position:relative; height:340px; margin-top:20px; overflow:hidden; border-radius:18px;
+    background: linear-gradient(180deg, #fff0f5, #ffe6ef);
+  }
+  .balloon{
+    position:absolute; bottom:-60px; width:52px; height:66px; border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+    cursor:pointer; animation: rise linear forwards;
+    box-shadow: inset -8px -8px 14px rgba(0,0,0,0.08);
+  }
+  .balloon::after{
+    content:""; position:absolute; bottom:-14px; left:50%; transform:translateX(-50%);
+    width:2px; height:16px; background:rgba(0,0,0,0.2);
+  }
+  @keyframes rise{ to{ transform:translateY(-380px); } }
+  .meter-wrap{ margin-top:22px; background:#ffd6e4; border-radius:20px; height:22px; overflow:hidden; }
+  .meter{ height:100%; width:0%; background:linear-gradient(90deg, var(--rose), var(--gold)); transition:width 0.4s ease; }
+  .game-msg{ margin-top:16px; font-size:1.1rem; font-weight:600; color:var(--rose-deep); min-height:30px; }
+  .btn{
+    margin-top:18px; background:var(--rose); color:white; border:none; padding:12px 28px; border-radius:30px;
+    font-family:'Quicksand',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; box-shadow:0 8px 20px rgba(232,87,138,0.35);
+    transition: transform 0.2s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center; padding:80px 20px 60px; position:relative; z-index:2;
+  }
+  footer h2{ font-size:clamp(2rem,6vw,3.2rem); font-style:italic; color:var(--rose-deep); margin-bottom:16px; }
+  footer p{ color:var(--plum); font-size:1.05rem; margin-bottom:28px; }
+  .credit{ margin-top:40px; font-size:0.8rem; color:#c98; opacity:0.6; }
+
+  #confetti-canvas{ position:fixed; inset:0; pointer-events:none; z-index:999; }
+
+  @media (max-width:600px){
+    section{ padding:70px 18px; }
+    .letter{ padding:34px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="petals"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">A little corner of the internet, just for you</div>
+  <h1>Happy Birthday<br>Kajoo</h1>
+  <div class="bloom-wrap">
+    <svg viewBox="0 0 120 120">
+      <g id="bloomGroup" transform="translate(60,60)">
+        <!-- petals generated by JS -->
+      </g>
+      <circle cx="60" cy="60" r="10" fill="#f4b942"/>
+    </svg>
+  </div>
+  <div class="sub">From Divay, with all my heart 🌷</div>
+
+  <div class="countdown" id="countdown">
+    <div class="cbox"><div class="num" id="cd-days">--</div><div class="lbl">Days</div></div>
+    <div class="cbox"><div class="num" id="cd-hours">--</div><div class="lbl">Hours</div></div>
+    <div class="cbox"><div class="num" id="cd-mins">--</div><div class="lbl">Mins</div></div>
+    <div class="cbox"><div class="num" id="cd-secs">--</div><div class="lbl">Secs</div></div>
+  </div>
+  <div class="scroll-hint">↓ scroll down, kajoo ↓</div>
+</section>
+
+<!-- LOVE LETTER -->
+<section id="letter">
+  <div class="sec-eyebrow reveal">Straight from the heart</div>
+  <h2 class="sec-title reveal">For You, Kajoo</h2>
+  <div class="letter reveal">
+    <p>My dearest Kajal,</p>
+    <p>If I had to pick one day to be grateful for out of all 365, it would be the one you were born — because every good thing in my life since I met you traces back to it. You make ordinary days feel like something worth remembering.</p>
+    <p>I know I'm not there with you right now — you're home, I'm at work, and there are miles between us. But I made you this little website because you deserve more than just a text message on your birthday. You deserve something as one-of-a-kind as you are. So here's a small piece of the internet that's entirely, only, yours — open it wherever you are, and know I'm thinking of you.</p>
+    <p>Here's to another year of your laugh, your randomness, your overthinking-at-2am, and every tiny thing that makes you, <em>you</em>. I love you, Kajoo. Happy Birthday.</p>
+    <div class="sign">— Divay</div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="story">
+  <div class="sec-eyebrow reveal">Our Story</div>
+  <h2 class="sec-title reveal">A Timeline Worth Keeping</h2>
+  <div class="timeline">
+    <div class="t-item reveal">
+      <h3>9th April</h3>
+      <p>The day I finally worked up the courage to propose to you on Snapchat — heart racing, hands shaking, scared out of my mind that you'd say no. Best kind of scared I've ever been.</p>
+    </div>
+    <div class="t-item reveal">
+      <h3>The Code Word</h3>
+      <p>The moment you told me "I love you" hidden in our own little code word. I still remember exactly how it felt to decode it and realize what you were really saying.</p>
+    </div>
+    <div class="t-item reveal">
+      <h3>Our First Call</h3>
+      <p>My favorite memory. Even with all the distance between us — me at work, you at home — that first call made the miles feel like nothing at all.</p>
+    </div>
+    <div class="t-item reveal">
+      <h3>Today</h3>
+      <p>Right now, miles apart, you on your phone reading this — but somehow it still feels like you're right here with me.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="sec-eyebrow reveal">Little Moments</div>
+  <h2 class="sec-title reveal">Our Gallery</h2>
+  <div class="gallery" id="galleryGrid"></div>
+  <div class="note reveal">📸 These are placeholder cards so nothing here is generic or copied — swap them for your real photos! In the HTML, find <code>galleryData</code> and change each card to an <code>&lt;img src="yourphoto.jpg"&gt;</code>. Instructions are in a comment right above it.</div>
+</section>
+
+<!-- MINI GAME -->
+<section id="game">
+  <div class="sec-eyebrow reveal">One Last Thing</div>
+  <h2 class="sec-title reveal">Pop Every Balloon, Kajoo</h2>
+  <div class="game-box reveal">
+    <p>Tap all the balloons before they float away — fill the heart meter to unlock your surprise message 🎈</p>
+    <div id="balloons"></div>
+    <div class="meter-wrap"><div class="meter" id="meter"></div></div>
+    <div class="game-msg" id="gameMsg">0% loved... keep popping!</div>
+    <button class="btn" id="startGame">Start</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h2>Happy Birthday, Kajoo 🎂</h2>
+  <p>I hope this year gives you everything your heart's been quietly wishing for.</p>
+  <button class="btn" id="confettiBtn">Celebrate! 🎉</button>
+  <div class="credit">made with love by Divay</div>
+</footer>
+
+<script>
+/* ---------------- Petals ambient ---------------- */
+const petalsEl = document.getElementById('petals');
+const petalEmojis = ['🌸','🌷','💮','🌺'];
+for(let i=0;i<18;i++){
+  const p = document.createElement('div');
+  p.className='petal';
+  p.textContent = petalEmojis[Math.floor(Math.random()*petalEmojis.length)];
+  p.style.left = Math.random()*100+'%';
+  p.style.fontSize = (14+Math.random()*16)+'px';
+  p.style.animationDuration = (10+Math.random()*10)+'s';
+  p.style.animationDelay = (Math.random()*10)+'s';
+  petalsEl.appendChild(p);
+}
+
+/* ---------------- Bloom flower SVG ---------------- */
+const bloomGroup = document.getElementById('bloomGroup');
+const petalColors = ['#e8578a','#f492b6','#e8578a','#f492b6','#e8578a','#f492b6'];
+for(let i=0;i<6;i++){
+  const angle = i*60;
+  const el = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+  el.setAttribute('cx', 0);
+  el.setAttribute('cy', -26);
+  el.setAttribute('rx', 14);
+  el.setAttribute('ry', 24);
+  el.setAttribute('fill', petalColors[i]);
+  el.setAttribute('opacity', '0.9');
+  el.classList.add('petal-shape');
+  el.style.setProperty('--r', angle+'deg');
+  el.style.animationDelay = (i*0.15)+'s';
+  el.setAttribute('transform', `rotate(${angle})`);
+  bloomGroup.appendChild(el);
+}
+
+/* ---------------- Countdown to July 12 ---------------- */
+function nextBirthday(){
+  const now = new Date();
+  let year = now.getFullYear();
+  let target = new Date(year, 6, 12, 0,0,0); // July is month 6 (0-indexed)
+  if(target < now){ target = new Date(year+1, 6, 12, 0,0,0); }
+  return target;
+}
+function updateCountdown(){
+  const target = nextBirthday();
+  const now = new Date();
+  let diff = target - now;
+  if(diff < 0) diff = 0;
+  const days = Math.floor(diff/(1000*60*60*24));
+  const hours = Math.floor((diff/(1000*60*60))%24);
+  const mins = Math.floor((diff/(1000*60))%60);
+  const secs = Math.floor((diff/1000)%60);
+  document.getElementById('cd-days').textContent = days;
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ---------------- Scroll reveal ---------------- */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+},{threshold:0.15});
+revealEls.forEach(el=>io.observe(el));
+
+/*
+  GALLERY INSTRUCTIONS FOR DIVAY:
+  Each object below becomes one card. To use a REAL photo instead of the
+  illustrated gradient, just change the render function further down to output
+  <img src="photos/yourfile.jpg"> instead of the gradient div. Keep it simple:
+  add your images to a "photos" folder next to this HTML file, then reference them here.
+*/
+const galleryData = [
+  {label:"First Hello", icon:"💌", grad:"linear-gradient(135deg,#ffb6c9,#ff8fab)"},
+  {label:"That One Trip", icon:"🌅", grad:"linear-gradient(135deg,#ffd6a5,#ff9a8b)"},
+  {label:"Late Night Talks", icon:"⭐", grad:"linear-gradient(135deg,#a8d8ea,#c9b8f2)"},
+  {label:"Your Laugh", icon:"😄", grad:"linear-gradient(135deg,#f7c8d8,#f4b942)"},
+  {label:"Us, Always", icon:"💞", grad:"linear-gradient(135deg,#e8578a,#c23d6d)"},
+  {label:"More To Come", icon:"✨", grad:"linear-gradient(135deg,#b8e8d4,#a9e0c9)"}
+];
+const grid = document.getElementById('galleryGrid');
+galleryData.forEach((g,i)=>{
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.style.background = g.grad;
+  card.style.setProperty('--rot', (i%2===0? '-3deg':'3deg'));
+  card.innerHTML = `<div class="icon">${g.icon}</div><span>${g.label}</span>`;
+  grid.appendChild(card);
+});
+
+/* ---------------- Balloon game ---------------- */
+const balloonBox = document.getElementById('balloons');
+const meterEl = document.getElementById('meter');
+const gameMsg = document.getElementById('gameMsg');
+const startBtn = document.getElementById('startGame');
+const balloonColors = ['#e8578a','#f4b942','#a9e0c9','#f492b6','#c9b8f2'];
+let popped = 0;
+const TOTAL = 12;
+let spawnInterval = null;
+let gameActive = false;
+
+function spawnBalloon(){
+  if(!gameActive) return;
+  const b = document.createElement('div');
+  b.className = 'balloon';
+  b.style.left = (Math.random()*80+5)+'%';
+  b.style.background = balloonColors[Math.floor(Math.random()*balloonColors.length)];
+  const duration = 5 + Math.random()*3;
+  b.style.animationDuration = duration+'s';
+  b.addEventListener('click', ()=>{
+    if(b.dataset.popped) return;
+    b.dataset.popped = "1";
+    popped = Math.min(popped+1, TOTAL);
+    const pct = Math.round((popped/TOTAL)*100);
+    meterEl.style.width = pct+'%';
+    gameMsg.textContent = pct+'% loved... keep popping!';
+    b.style.transform = 'scale(1.6)';
+    b.style.opacity = '0';
+    b.style.transition = 'all 0.25s ease';
+    setTimeout(()=>b.remove(), 250);
+    if(popped >= TOTAL){
+      finishGame();
+    }
+  });
+  b.addEventListener('animationend', ()=>{ b.remove(); });
+  balloonBox.appendChild(b);
+}
+
+function finishGame(){
+  gameActive = false;
+  clearInterval(spawnInterval);
+  gameMsg.textContent = "💖 100% loved. Happy Birthday, Kajoo — you're my favorite person.";
+  launchConfetti();
+}
+
+startBtn.addEventListener('click', ()=>{
+  if(gameActive) return;
+  popped = 0;
+  meterEl.style.width = '0%';
+  gameMsg.textContent = '0% loved... keep popping!';
+  balloonBox.innerHTML = '';
+  gameActive = true;
+  startBtn.textContent = "Restart";
+  spawnInterval = setInterval(spawnBalloon, 550);
+});
+
+/* ---------------- Confetti ---------------- */
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+let confetti = [];
+function launchConfetti(){
+  const colors = ['#e8578a','#f4b942','#a9e0c9','#f492b6','#c9b8f2'];
+  for(let i=0;i<140;i++){
+    confetti.push({
+      x: Math.random()*canvas.width,
+      y: -20 - Math.random()*canvas.height*0.3,
+      r: 4+Math.random()*6,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      speedY: 2+Math.random()*3,
+      speedX: -2+Math.random()*4,
+      rot: Math.random()*360,
+      rotSpeed: -6+Math.random()*12,
+      life: 0
+    });
+  }
+  if(!confettiRunning){ confettiRunning = true; animateConfetti(); }
+}
+let confettiRunning = false;
+function animateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confetti.forEach(c=>{
+    c.x += c.speedX; c.y += c.speedY; c.rot += c.rotSpeed; c.life++;
+    ctx.save();
+    ctx.translate(c.x,c.y);
+    ctx.rotate(c.rot*Math.PI/180);
+    ctx.fillStyle = c.color;
+    ctx.fillRect(-c.r/2,-c.r/2,c.r,c.r*0.6);
+    ctx.restore();
+  });
+  confetti = confetti.filter(c=>c.y < canvas.height+30 && c.life < 500);
+  if(confetti.length>0){
+    requestAnimationFrame(animateConfetti);
+  } else {
+    confettiRunning = false;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+}
+document.getElementById('confettiBtn').addEventListener('click', launchConfetti);
+</script>
+</body>
+</html>
