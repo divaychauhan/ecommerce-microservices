@@ -1,0 +1,23 @@
+aws_region  = "ap-south-1"
+aws_profile = "ecommerce-dev"
+
+project_name = "ecommerce"
+environment  = "dev"
+
+availability_zones = ["ap-south-1a", "ap-south-1b"]
+
+eks_cluster_version = "1.32"
+node_instance_types = ["t3.medium"]
+node_min_size       = 1
+node_desired_size   = 2
+node_max_size       = 3
+
+db_instance_class = "db.t3.micro"
+db_name           = "ecommerce"
+db_username       = "ecommerce_admin"
+
+redis_node_type = "cache.t3.micro"
+
+enable_nat_gateway = true
+enable_rds         = true
+enable_redis       = true
